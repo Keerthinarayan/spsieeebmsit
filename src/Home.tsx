@@ -126,7 +126,7 @@
       </motion.p>
 
       <motion.a
-        href="https://www.ieee.org/membership/join/index.html"
+        href="https://bmsit-ieee.github.io/sps/Membership_Drive/front.html"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-blue-500 hover:bg-blue-600 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold inline-block relative overflow-hidden group"
