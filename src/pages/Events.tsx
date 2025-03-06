@@ -13,7 +13,7 @@ const Events = () => {
 
   const upcomingEvents = [
   {
-    title: 'Capture The Signal 2025',
+    title: 'Decode X 2025',
     date: 'MAY 15-17, 2025',
     location: 'BMSIT, Bengaluru',
     description: 'Students collaborating on innovative signal processing solutions',
