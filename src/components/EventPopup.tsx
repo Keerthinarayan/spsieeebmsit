@@ -12,7 +12,7 @@ interface Event {
 const EventPopup: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentEvent] = useState<Event>({
-    title: "Capture The Signal 2025",
+    title: "Decode X 2025",
     date: "MAY 15-17, 2025",
     description: "Students collaborating on innovative signal processing solutions"
   });
