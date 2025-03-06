@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, Instagram, Linkedin, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -10,7 +10,34 @@ const Footer = () => {
     { path: '/events', label: 'Events' },
     { path: '/archives', label: 'Archives' },
     { path: '/team', label: 'Our Team' },
+    { path: '/spectrum', label: 'Spectrum' },
   ];
+
+  const socialLinks = [
+    {
+      name: 'Instagram',
+      icon: <Instagram className="w-5 h-5" />,
+      url: 'https://www.instagram.com/sps_bmsit?utm_source=ig_web_button_share_sheet&igsh=ODdmZWVhMTFiMw==',
+      hoverColor: 'hover:bg-pink-600',
+    },
+    {
+      name: 'LinkedIn',
+      icon: <Linkedin className="w-5 h-5" />,
+      url: 'https://www.linkedin.com/in/ieeespsbmsitm?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      hoverColor: 'hover:bg-blue-600',
+    },
+    {
+      name: 'WhatsApp',
+      icon: <MessageCircle className="w-5 h-5" />,
+      url: 'https://chat.whatsapp.com/JImyalLUCR8DVpg86jOdYM',
+      hoverColor: 'hover:bg-green-600',
+    },
+  ];
+
+  const contactInfo = {
+    emails: ['ieee@bmsit.in', 'ieeespsbmsit@gmail.com'],
+    phones: ['73892 96975 -Smriti (Vice Chair) ', '86189 78745 -Chinmay Bhat (Treasurer)'],
+  };
 
   return (
     <footer className="bg-gray-900 text-white relative overflow-hidden">
@@ -30,6 +57,7 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* About Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -51,42 +79,55 @@ const Footer = () => {
             <p className="text-gray-400">
               Advancing signal processing research and applications worldwide.
             </p>
+            <motion.div 
+              className="flex items-start space-x-2"
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <MapPin className="h-4 w-4 text-blue-400 mt-1 flex-shrink-0" />
+              <span className="text-gray-400">BMS Institute Of Technology & Management, Bengaluru</span>
+            </motion.div>
           </motion.div>
 
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <div className="space-y-3">
-              <motion.div 
-                className="flex items-center space-x-2"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Mail className="h-4 w-4 text-blue-400" />
-                <span className="text-gray-400">contact@ieeesps.org</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center space-x-2"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Phone className="h-4 w-4 text-blue-400" />
-                <span className="text-gray-400">+91 (555) 1432 324</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center space-x-2"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <MapPin className="h-4 w-4 text-blue-400" />
-                <span className="text-gray-400">BMS Institute Of Technology & Management, Bengaluru </span>
-              </motion.div>
+            <div className="space-y-4">
+              {contactInfo.emails.map((email, index) => (
+                <motion.div 
+                  key={email}
+                  className="flex items-center space-x-2"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Mail className="h-4 w-4 text-blue-400" />
+                  <a href={`mailto:${email}`} className="text-gray-400 hover:text-blue-400 transition-colors">
+                    {email}
+                  </a>
+                </motion.div>
+              ))}
+              
+              {contactInfo.phones.map((phone, index) => (
+                <motion.div 
+                  key={phone}
+                  className="flex items-center space-x-2"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Phone className="h-4 w-4 text-blue-400" />
+                  <a href={`tel:${phone.replace(/\s/g, '')}`} className="text-gray-400 hover:text-blue-400 transition-colors">
+                    {phone}
+                  </a>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
+          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -94,7 +135,7 @@ const Footer = () => {
           >
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link, index) => (
+              {quickLinks.map((link) => (
                 <motion.li
                   key={link.path}
                   whileHover={{ x: 5, color: "#60A5FA" }}
@@ -111,32 +152,45 @@ const Footer = () => {
             </ul>
           </motion.div>
 
+          {/* Social Links and Join Us */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
+            className="space-y-6"
           >
-            <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-            <p className="text-gray-400 mb-4">
-              Subscribe to our newsletter for updates and news.
-            </p>
-            <motion.div 
-              className="flex"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 rounded-l-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 border-gray-700"
-              />
-              <motion.button 
-                className="bg-blue-600 px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors"
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
+              <div className="flex space-x-4">
+                {socialLinks.map((social) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`p-2 rounded-full bg-gray-800 ${social.hoverColor} transition-colors duration-300`}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Join Us</h3>
+              <motion.a
+                href="https://bmsit-ieee.github.io/sps/Membership_Drive/front.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-full text-white transition-colors"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Subscribe
-              </motion.button>
-            </motion.div>
+                Become a Member
+              </motion.a>
+            </div>
           </motion.div>
         </div>
 
@@ -147,7 +201,7 @@ const Footer = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <p className="text-center text-gray-400">
-            © {new Date().getFullYear()} IEEE Signal Processing Society BMS Institute of Technology & Managment. All rights reserved. Use of this website signifies your agreement to the IEEE Terms and Conditions.IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
+            © {new Date().getFullYear()} IEEE Signal Processing Society BMS Institute of Technology & Management. All rights reserved.Use of this website signifies your agreement to the IEEE Terms and Conditions.IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
           </p>
         </motion.div>
       </div>
