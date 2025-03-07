@@ -36,7 +36,7 @@ const Team = () => {
     {
       name: 'Smriti',
       role: 'Vice Chair',
-      image: 'https://i.imgur.com/5I3bTDS.png', 
+      image: 'https://i.imgur.com/UoAAp6m.jpeg', 
       links: {
         linkedin: '#',
         email: '#',
