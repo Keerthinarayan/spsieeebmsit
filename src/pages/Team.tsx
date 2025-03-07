@@ -67,7 +67,7 @@ const Team = () => {
     {
       name: 'Keerthi Narayan',
       role: 'Webmaster',
-      image: 'https://i.imgur.com/mDnjkfh.jpeg', 
+      image: 'https://i.imgur.com/lPUT2pj.jpeg', 
       links: {
         linkedin: '#',
         email: '#',
