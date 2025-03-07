@@ -98,7 +98,7 @@ const Team = () => {
     {
       name: 'Susan Tiji Varghese',
       role: 'Signal Volcom Head',
-      image: 'https://i.imgur.com/5I3bTDS.png',
+      image: 'https://i.imgur.com/Jk7OGo3.jpeg',
       links: {
         linkedin: '#',
         email: '#',
