@@ -16,7 +16,7 @@ const Team = () => {
     {
       name: 'Dr. Saneesh',
       role: 'Faculty Advisor',
-      image: 'https://i.imgur.com/YMTD2ko.png',
+      image: 'https://i.imgur.com/G8JFNNi.png',
       links: {
         linkedin: '#',
         email: '#',
@@ -26,7 +26,7 @@ const Team = () => {
     {
       name: 'Sourabh K H',
       role: 'Chair',
-      image: 'https://i.imgur.com/5I3bTDS.png', 
+      image: 'https://i.imgur.com/iulX6yi.jpeg', 
       links: {
         linkedin: '#',
         email: 'david@ieeesps.org',
@@ -47,7 +47,7 @@ const Team = () => {
     {
       name: 'Maanya',
       role: 'Secretary',
-      image: 'https://i.imgur.com/5I3bTDS.png',
+      image: 'https://i.imgur.com/S1Vnj9Z.jpeg',
       links: {
         linkedin: '#',
         email: '#',
@@ -57,7 +57,7 @@ const Team = () => {
     {
       name: 'Chinamy Bhat',
       role: 'Treasurer',
-      image: 'https://i.imgur.com/5I3bTDS.png',
+      image: 'https://i.imgur.com/20E0vn9.jpeg',
       links: {
         linkedin: '#',
         email: '#',
@@ -67,7 +67,7 @@ const Team = () => {
     {
       name: 'Keerthi Narayan',
       role: 'Webmaster',
-      image: 'https://i.imgur.com/5I3bTDS.png', 
+      image: 'https://i.imgur.com/mDnjkfh.jpeg', 
       links: {
         linkedin: '#',
         email: '#',
@@ -78,7 +78,7 @@ const Team = () => {
     {
       name: 'Deepak Reddy',
       role: 'Webmaster',
-      image: 'https://i.imgur.com/5I3bTDS.png', 
+      image: 'https://i.imgur.com/66JXK4n.jpeg', 
       links: {
         linkedin: '#',
         email: '#',
@@ -88,7 +88,7 @@ const Team = () => {
     {
       name: 'Vikas',
       role: 'Spectrum Volcom Head',
-      image: 'https://i.imgur.com/5I3bTDS.png', 
+      image: 'https://i.imgur.com/ou4chzI.jpeg', 
       links: {
         linkedin: '#',
         email: '#',
