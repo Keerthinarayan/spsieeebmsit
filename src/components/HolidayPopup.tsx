@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, Heart, Sparkles } from 'lucide-react';
+import { X, ArrowRight, Sparkles } from 'lucide-react'; // Using Sparkles for a fun yet professional touch
 import { Link } from 'react-router-dom';
 
 const HolidayPopup: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [slideIndex, setSlideIndex] = useState(0);
 
-  const valentineSlides = [
+  const eventSlides = [
     {
-      title: "SPS Connecting Signals Together",
-      description: "Where signals meet, connections happen 💖",
-      icon: <Heart className="w-16 h-16 text-pink-400 drop-shadow-glow" />,
+      title: "Happy Women's Day!",
+      description: "Celebrate with us and join our community of inspiring women in tech! 💫",
+      icon: <Sparkles className="w-16 h-16 text-yellow-300 drop-shadow-glow" />, // Fun sparkles icon
     },
     {
-      title: "Don't Let Your Signal Fade Away!",
-      description: "Join SPS now, or your perfect frequency match might slip away! 💝",
-      icon: <Sparkles className="w-16 h-16 text-pink-400 drop-shadow-glow" />,
+      title: "Celebrating Women in Tech",
+      description: "Honoring the brilliant women shaping the future of technology. Let's connect and grow together! 🌟",
+      icon: <Sparkles className="w-16 h-16 text-yellow-300 drop-shadow-glow" />, // Consistent sparkles icon
     }
   ];
 
@@ -28,7 +28,7 @@ const HolidayPopup: React.FC = () => {
 
     // Change slides every 5 seconds
     const slideTimer = setInterval(() => {
-      setSlideIndex((prev) => (prev + 1) % valentineSlides.length);
+      setSlideIndex((prev) => (prev + 1) % eventSlides.length);
     }, 5000);
 
     return () => {
@@ -37,12 +37,16 @@ const HolidayPopup: React.FC = () => {
     };
   }, []);
 
-  const isValentinesSeason = () => {
+  const isEventPeriod = () => {
     const today = new Date();
-    return today.getMonth() === 1 && today.getDate() >= 1 && today.getDate() <= 14;
+    const month = today.getMonth(); // March is month 2 (0-indexed)
+    const day = today.getDate(); // Day of the month
+
+    // Check if the date is March 7th or March 8th
+    return month === 2 && (day === 7 || day === 8);
   };
 
-  if (!isValentinesSeason()) {
+  if (!isEventPeriod()) {
     return null;
   }
 
@@ -55,12 +59,12 @@ const HolidayPopup: React.FC = () => {
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[100] flex items-center justify-center"
         >
-          {/* Backdrop with hearts */}
+          {/* Backdrop with gradient */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-gradient-to-b from-pink-500/40 to-red-500/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-gradient-to-b from-purple-500/40 to-pink-500/40 backdrop-blur-sm"
             onClick={() => setIsVisible(false)}
           />
 
@@ -73,12 +77,12 @@ const HolidayPopup: React.FC = () => {
           >
             {/* Main Content */}
             <motion.div
-              className="relative bg-gradient-to-r from-pink-500 to-red-500 rounded-2xl shadow-2xl overflow-hidden"
+              className="relative bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl shadow-2xl overflow-hidden"
               animate={{
                 boxShadow: [
-                  "0 0 0 0 rgba(236, 72, 153, 0)",
-                  "0 0 0 20px rgba(236, 72, 153, 0.2)",
-                  "0 0 0 40px rgba(236, 72, 153, 0)"
+                  "0 0 0 0 rgba(168, 85, 247, 0)",
+                  "0 0 0 20px rgba(168, 85, 247, 0.2)",
+                  "0 0 0 40px rgba(168, 85, 247, 0)"
                 ]
               }}
               transition={{
@@ -107,7 +111,7 @@ const HolidayPopup: React.FC = () => {
                   transition={{ duration: 0.5 }}
                   className="p-12 min-h-[400px] flex items-center justify-center"
                 >
-                  {/* Floating Hearts Background */}
+                  {/* Floating Sparkles Background */}
                   {[...Array(30)].map((_, i) => (
                     <motion.div
                       key={i}
@@ -131,9 +135,7 @@ const HolidayPopup: React.FC = () => {
                         ease: "easeOut"
                       }}
                     >
-                      <Heart className={`w-6 h-6 ${
-                        Math.random() > 0.5 ? 'text-pink-300' : 'text-red-300'
-                      }`} />
+                      <Sparkles className="w-6 h-6 text-yellow-300" />
                     </motion.div>
                   ))}
 
@@ -156,7 +158,7 @@ const HolidayPopup: React.FC = () => {
                           ease: "easeInOut"
                         }}
                       >
-                        {valentineSlides[slideIndex].icon}
+                        {eventSlides[slideIndex].icon}
                       </motion.div>
                     </div>
 
@@ -166,7 +168,7 @@ const HolidayPopup: React.FC = () => {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.2 }}
                     >
-                      {valentineSlides[slideIndex].title}
+                      {eventSlides[slideIndex].title}
                     </motion.h2>
                     
                     <motion.p
@@ -175,7 +177,7 @@ const HolidayPopup: React.FC = () => {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.3 }}
                     >
-                      {valentineSlides[slideIndex].description}
+                      {eventSlides[slideIndex].description}
                     </motion.p>
 
                     <motion.div
@@ -186,10 +188,10 @@ const HolidayPopup: React.FC = () => {
                     >
                       <Link
                         to="/events"
-                        className="group relative inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-pink-100 rounded-full text-pink-600 font-medium text-lg transition-colors"
+                        className="group relative inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-pink-100 rounded-full text-purple-600 font-medium text-lg transition-colors"
                         onClick={() => setIsVisible(false)}
                       >
-                        <span>Join SPS Today</span>
+                        <span>Join Our Community</span>
                         <motion.div
                           animate={{ x: [0, 5, 0] }}
                           transition={{ 
@@ -204,7 +206,7 @@ const HolidayPopup: React.FC = () => {
                         
                         {/* Button glow effect */}
                         <motion.div
-                          className="absolute inset-0 rounded-full bg-pink-400 blur-xl"
+                          className="absolute inset-0 rounded-full bg-purple-400 blur-xl"
                           animate={{
                             opacity: [0.2, 0.4, 0.2]
                           }}
@@ -222,7 +224,7 @@ const HolidayPopup: React.FC = () => {
 
               {/* Slide Indicators */}
               <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-3">
-                {valentineSlides.map((_, index) => (
+                {eventSlides.map((_, index) => (
                   <motion.div
                     key={index}
                     className={`w-2 h-2 rounded-full ${
