@@ -30,7 +30,7 @@ const Chatbot: React.FC = () => {
       setTimeout(() => {
         setMessages([
           {
-            text: "👋 Hi there! I'm your friendly IEEE SPS assistant! I'd love to help you explore everything about our community. What's your name?",
+            text: "👋 Hi there! I'm your IEEE SPS assistant! I'd love to help you explore everything about our community. What's your name?",
             isBot: true
           }
         ]);
