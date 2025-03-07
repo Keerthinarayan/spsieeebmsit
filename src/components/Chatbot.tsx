@@ -12,6 +12,8 @@ const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [context, setContext] = useState<string[]>([]);
+  const [userName, setUserName] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -28,7 +30,7 @@ const Chatbot: React.FC = () => {
       setTimeout(() => {
         setMessages([
           {
-            text: "Hello! I'm your IEEE SPS assistant. How can I help you today?",
+            text: "👋 Hi there! I'm your friendly IEEE SPS assistant! I'd love to help you explore everything about our community. What's your name?",
             isBot: true
           }
         ]);
@@ -39,106 +41,98 @@ const Chatbot: React.FC = () => {
   const handleSendMessage = () => {
     if (!inputText.trim()) return;
 
-    setMessages([...messages, { text: inputText, isBot: false }]);
+    const userMessage = inputText.trim();
+    setMessages(prev => [...prev, { text: userMessage, isBot: false }]);
     setInputText('');
     setIsTyping(true);
+    setContext(prev => [...prev, userMessage]);
 
     // Simulate bot thinking with variable response time
     setTimeout(() => {
-      const response = getBotResponse(inputText);
+      let response: string;
+      
+      if (!userName) {
+        const name = extractName(userMessage);
+        setUserName(name);
+        response = `Nice to meet you, ${name}! 😊 I'm here to help you with:\n\n🎯 Events and activities\n📚 Membership details\n🔬 Technical resources\n🤝 Networking opportunities\n👥 Team information\n\nWhat would you like to know about?`;
+      } else {
+        response = getBotResponse(userMessage, context, userName);
+      }
+
       setIsTyping(false);
       setMessages(prev => [...prev, { text: response, isBot: true }]);
+      setContext(prev => [...prev, response]);
 
-      // Check if the user said goodbye
-      if (inputText.toLowerCase().match(/\b(bye|goodbye|see you|farewell)\b/)) {
-        setTimeout(() => setIsOpen(false), 1500);
+      if (userMessage.toLowerCase().match(/\b(bye|goodbye|see you|farewell)\b/)) {
+        setTimeout(() => setIsOpen(false), 2000);
       }
-    }, Math.random() * 500 + 500); // Random delay between 500-1000ms
+    }, Math.random() * 500 + 500);
 
     if (inputRef.current) {
       inputRef.current.focus();
     }
   };
 
-  const getBotResponse = (input: string): string => {
+  const extractName = (input: string): string => {
+    // Remove common greeting phrases
+    const cleanInput = input.toLowerCase()
+      .replace(/^(hi|hello|hey|my name is|i am|i'm)\s+/i, '')
+      .replace(/[^a-zA-Z\s]/g, '')
+      .trim();
+    
+    // Capitalize first letter of each word
+    return cleanInput.split(' ')[0].charAt(0).toUpperCase() + 
+           cleanInput.split(' ')[0].slice(1).toLowerCase();
+  };
+
+  const getBotResponse = (input: string, context: string[], userName: string): string => {
     const lowerInput = input.toLowerCase();
     
-    // Goodbye responses
+    // Friendly greetings with name
+    if (lowerInput.match(/\b(hi|hello|hey|greetings)\b/)) {
+      return `Hey ${userName}! 👋 Great to see you again! How can I help you today? I'm always excited to chat about:\n\n🎯 Our awesome events\n📚 Membership perks\n🔬 Cool tech stuff\n🤝 Networking opportunities\n\nWhat interests you?`;
+    }
+
+    // Goodbye responses with name
     if (lowerInput.match(/\b(bye|goodbye|see you|farewell)\b/)) {
-      return "Goodbye! Have a great day! Feel free to come back if you have more questions. 👋";
+      return `Take care, ${userName}! 👋 It was great chatting with you. Don't forget to check out our upcoming events! Hope to see you again soon! 😊`;
     }
 
-    // Thank you responses
+    // Thank you responses with name
     if (lowerInput.match(/\b(thanks|thank you|thx)\b/)) {
-      return "You're welcome! Is there anything else you'd like to know about IEEE SPS?";
+      return `You're welcome, ${userName}! 😊 Always happy to help! Is there anything else you'd like to know about our IEEE SPS community?`;
     }
 
-    // Events related queries
+    // Team Information with personality
+    if (lowerInput.includes('team') || lowerInput.includes('committee') || lowerInput.includes('who')) {
+      return `Let me introduce you to our amazing team, ${userName}! 🌟\n\n👨‍🏫 Faculty Advisor:\n- Dr. Saneesh (Our awesome mentor!)\n\n👥 Student Leaders:\n- Sourabh K H (Chair) - Leading with vision\n- Smriti (Vice Chair) - Our energetic organizer\n- Maanya (Secretary) - Keeping everything running smoothly\n- Chinamy Bhat (Treasurer) - Managing our resources\n\n🎨 Creative Team:\n- Keerthi Narayan & Deepak Reddy (Webmasters)\n- Vikas (Spectrum Volcom Head)\n- Susan Tiji Varghese (Signal Volcom Head)\n\nWould you like to connect with any of them? 🤝`;
+    }
+
+    // Events with excitement
     if (lowerInput.includes('event') || lowerInput.includes('workshop') || lowerInput.includes('conference')) {
       if (lowerInput.includes('next') || lowerInput.includes('upcoming')) {
-        return 'Our next major event is "Capture The Signal 2025" happening from MAY 15-17, 2025. You can register for it on our Events page!\n\nWe also have a Workshop on AI in Signal Processing coming up in July 2025.';
+        return `${userName}, you're in for a treat! 🎉 Check out our exciting upcoming events:\n\n🚀 Decode X 2025 (MAY 15-17)\n- Epic technical competitions\n- Mind-blowing expert talks\n- Amazing project showcase\n\n🤖 AI in Signal Processing Workshop (July 8)\n- Hands-on learning sessions\n- Industry experts sharing insights\n\nWant to join the fun? I can help you register! 😊`;
       }
-      if (lowerInput.includes('register') || lowerInput.includes('sign up')) {
-        return 'You can register for our events through the Events page. For Capture The Signal 2025, registration is open now!\n\nWould you like me to tell you more about the event?';
-      }
-      if (lowerInput.includes('cost') || lowerInput.includes('fee') || lowerInput.includes('price')) {
-        return 'Event fees vary. IEEE members get special discounts on all events. Contact us for specific event pricing!';
-      }
-      return 'We organize various technical events including:\n- Workshops\n- Conferences\n- Student meetups\n- Technical competitions\n\nOur flagship event "Capture The Signal" is coming up in May 2025!';
+      return `Hey ${userName}! 🌟 We've got tons of exciting events:\n\n🔬 Technical workshops\n🎓 Research symposiums\n🤝 Industry connect sessions\n💡 Hands-on training\n🌐 Networking meets\n\nWhich one sounds most interesting to you?`;
     }
-    
-    // Membership queries
-    if (lowerInput.includes('join') || lowerInput.includes('member') || lowerInput.includes('registration')) {
-      if (lowerInput.includes('benefit') || lowerInput.includes('perks')) {
-        return 'IEEE SPS membership benefits include:\n- Access to technical resources\n- Event discounts\n- Networking opportunities\n- Professional development\n- Digital library access';
-      }
-      if (lowerInput.includes('cost') || lowerInput.includes('fee')) {
-        return 'Student membership fees are discounted! Visit ieee.org/membership for current rates and special offers.';
-      }
-      return 'To become a member of IEEE SPS:\n1. Visit ieee.org/membership\n2. Select your membership type\n3. Complete the registration process\n\nStudent members get special discounts!';
+
+    // Social Media with enthusiasm
+    if (lowerInput.includes('social') || lowerInput.includes('follow') || lowerInput.includes('connect')) {
+      return `${userName}, let's stay connected! 🌐\n\n📱 Follow our journey:\n- Instagram: @sps_bmsit (for awesome event pics!)\n- LinkedIn: IEEE SPS BMSIT&M (for professional updates)\n- WhatsApp Community (for instant updates)\n\nJoin us and never miss the fun! 🎉`;
     }
-    
-    // About SPS
-    if (lowerInput.includes('sps') || lowerInput.includes('signal') || lowerInput.includes('about')) {
-      if (lowerInput.includes('mission') || lowerInput.includes('goal')) {
-        return 'Our mission is to advance signal processing technology through:\n- Innovation\n- Education\n- Research collaboration\n- Professional development';
-      }
-      if (lowerInput.includes('location') || lowerInput.includes('where')) {
-        return 'We are located at BMS Institute of Technology & Management, Bengaluru. Our chapter is part of the global IEEE Signal Processing Society.';
-      }
-      return 'IEEE Signal Processing Society (SPS) at BMSIT&M is dedicated to advancing signal processing technology. We focus on innovation, education, and building a strong technical community.';
-    }
-    
-    // Team related queries
-    if (lowerInput.includes('team') || lowerInput.includes('committee') || lowerInput.includes('faculty')) {
-      if (lowerInput.includes('faculty') || lowerInput.includes('advisor')) {
-        return 'Our Faculty Advisor is Dr. Saneesh, who guides our chapter activities and technical initiatives.';
-      }
-      if (lowerInput.includes('chair') || lowerInput.includes('lead')) {
-        return 'Our current leadership:\n- Chair: Sourabh K H\n- Vice Chair: Smriti\n- Secretary: Maanya\n- Treasurer: Chinamy Bhat';
-      }
-      return 'Our team is led by Dr. Saneesh (Faculty Advisor) and includes Sourabh K H (Chair), Smriti (Vice Chair), and other dedicated members. Visit our Team page to meet everyone!';
-    }
-    
-    // Contact information
-    if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('reach')) {
-      if (lowerInput.includes('urgent') || lowerInput.includes('emergency')) {
-        return 'For urgent matters, please email us at contact@ieeesps.org or reach out to our Faculty Advisor directly.';
-      }
-      return 'You can reach us at:\nEmail: contact@ieeesps.org\nLocation: BMSIT&M Campus, Bengaluru\n\nFollow us on social media for updates!';
-    }
-    
-    // General greetings
-    if (lowerInput.match(/\b(hi|hello|hey|howdy|greetings)\b/)) {
-      return "Hello! I'm here to help you learn about IEEE SPS at BMSIT&M. You can ask me about:\n- Events and activities\n- Membership details\n- Our team\n- Contact information\n\nWhat would you like to know?";
+
+    // Contact Information with personality
+    if (lowerInput.includes('contact') || lowerInput.includes('reach') || lowerInput.includes('email')) {
+      return `${userName}, here's how you can reach us! 📬\n\n✉️ Email:\n- ieee@bmsit.in\n- ieeespsbmsit@gmail.com\n\n📞 Phone:\n- Smriti (Vice Chair): 73892 96975\n- Chinmay Bhat (Treasurer): 86189 78745\n\n📍 Find us at: BMS Institute of Technology & Management, Bengaluru\n\nWe'd love to hear from you! 😊`;
     }
 
     // Help or confused user
-    if (lowerInput.includes('help') || lowerInput.includes('confused') || lowerInput.includes('what can you')) {
-      return "I can help you with:\n1. Information about our events\n2. Membership details\n3. Team information\n4. Contact details\n5. General queries about SPS\n\nJust ask me anything about these topics!";
+    if (lowerInput.includes('help') || lowerInput.includes('confused')) {
+      return `No worries, ${userName}! 😊 I'm here to help! Let's explore:\n\n🎯 Event details and registration\n📚 Membership benefits\n🔬 Technical resources\n🤝 Networking opportunities\n👥 Team connections\n🌐 Social media\n\nWhat would you like to know more about?`;
     }
 
-    return "I'm not quite sure about that. You can ask me about:\n- Our events and activities\n- Membership details\n- Our team\n- Contact information\n\nOr try rephrasing your question!";
+    // Default response with personality
+    return `Hey ${userName}! 🤔 I see you're interested in ${input.toLowerCase().split(' ').slice(-3).join(' ')}. Let me help you better!\n\nWe could talk about:\n🎯 Exciting events\n📚 Membership perks\n🔬 Tech resources\n🤝 Networking\n👥 Our team\n\nWhat catches your eye? 😊`;
   };
 
   return (
@@ -180,7 +174,7 @@ const Chatbot: React.FC = () => {
                 <Bot className="w-5 h-5" />
                 <div>
                   <h3 className="font-semibold text-sm">IEEE SPS Assistant</h3>
-                  <p className="text-xs text-blue-100">Ask me anything!</p>
+                  <p className="text-xs text-blue-100">Let's chat! 😊</p>
                 </div>
               </div>
             </div>
