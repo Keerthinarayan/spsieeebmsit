@@ -52,27 +52,27 @@ const Archives = () => {
     {
       name: 'Aditya ',
       role: 'President (2023-24)',
-      image: 'https://i.imgur.com/6lAQNjD.png',
+      image: 'https://i.imgur.com/XYugBxz.jpeg',
     },
     {
       name: 'Shashank ',
       role: 'Vice President (2023-24)',
-      image: 'https://i.imgur.com/6lAQNjD.png ',
+      image: 'https://bmsit-ieee.github.io/sps/wp-content/uploads/2024/03/PanthangiViceCHair.jpg',
     },
     {
       name: 'Vibhav',
       role: 'Secretary (2023-24)',
-      image: 'https://i.imgur.com/6lAQNjD.png ',
+      image: 'https://i.imgur.com/bp1Ck3S.jpeg ',
     },
     {
       name: 'Suhas',
       role: 'Treasurer (2023-24)',
-      image: 'https://i.imgur.com/6lAQNjD.png ',
+      image: 'https://i.imgur.com/MRRwzH3.jpeg ',
     },
     {
       name: 'Rakshit',
       role: 'Webmaster (2023-24)',
-      image: 'https://i.imgur.com/6lAQNjD.png ',
+      image: 'https://i.imgur.com/KeBIscO.jpeg ',
     },
   ];
 
