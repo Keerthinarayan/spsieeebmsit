@@ -14,7 +14,7 @@ const Events = () => {
   const upcomingEvents = [
     {
       title: 'Decode X 2025',
-      date: 'June 5 - 6, 2025',
+      date: 'June 5 - 7, 2025',
       location: 'BMSIT, Bengaluru',
       description: 'IEEE SPS flagship event of 2025 , Students collaborating on innovative signal processing solutions',
       image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
