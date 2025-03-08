@@ -87,7 +87,7 @@ const Team = () => {
     },
     {
       name: 'Vikas',
-      role: 'Spectrum Volcom Head',
+      role: 'Volcom Lead',
       image: 'https://i.imgur.com/ou4chzI.jpeg', 
       links: {
         linkedin: '#',
@@ -97,7 +97,7 @@ const Team = () => {
     },
     {
       name: 'Susan Tiji Varghese',
-      role: 'Signal Volcom Head',
+      role: 'Volcom Lead',
       image: 'https://i.imgur.com/Jk7OGo3.jpeg',
       links: {
         linkedin: '#',
