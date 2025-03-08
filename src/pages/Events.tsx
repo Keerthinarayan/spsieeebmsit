@@ -37,9 +37,9 @@ const Events = () => {
   const previousActivities = [
     {
       title: 'Capture The Signal 2024',
-      date: 'March 2024',
+      date: 'June 2024',
       location: 'BMSIT Academic block, Bengaluru',
-      description: 'IEEE SPS flagship event of 2024 ,Join us for the annual symposium featuring keynote speakers, workshops, and networking opportunities.',
+      description: 'IEEE SPS flagship event of 2024 ,The annual symposium featuring keynote speakers, workshops, and networking opportunities.',
       image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
       attendees: 400,
       topics: ['Innovation', 'Student Projects', 'Competition'],
