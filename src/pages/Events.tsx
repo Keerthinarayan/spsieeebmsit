@@ -12,186 +12,190 @@ const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const upcomingEvents = [
-  {
-    title: 'Decode X 2025',
-    date: 'MAY 15-17, 2025',
-    location: 'BMSIT, Bengaluru',
-    description: 'Students collaborating on innovative signal processing solutions',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    attendees: 150,
-    topics: ['AI & ML', 'Signal Theory', 'Applications'],
-    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSe8ieUGquC7AH-9Wm-6Lcrn0-87HxbW-C8NF30_LsqLT6UmxA/viewform?usp=header', // Link for the first event
-  },
-  {
-    title: 'Workshop on AI in Signal Processing',
-    date: 'July 8, 2025',
-    location: 'Virtual Event',
-    description: 'Learn about the latest applications of AI in signal processing from industry experts.',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    attendees: 300,
-    topics: ['Deep Learning', 'Neural Networks', 'Real-time Processing'],
-    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLScAho4NgQ-H0zXE1E02aO4vcgEtHURxQMcsuR9YUIXn41H_nQ/viewform?usp=dialog', // Link for the second event
-  },
-];
+    {
+      title: 'Decode X 2025',
+      date: 'June 5 - 6, 2025',
+      location: 'BMSIT, Bengaluru',
+      description: 'IEEE SPS flagship event of 2025 , Students collaborating on innovative signal processing solutions',
+      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+      attendees: 200,
+      topics: ['AI & ML', 'Signal Theory', 'Applications'],
+      registrationLink: 'https://spslaunch.netlify.app/', // Link for the first event
+    },
+    {
+      title: 'Workshop on AI in Signal Processing',
+      date: 'July 8, 2025',
+      location: 'Virtual Event',
+      description: 'Learn about the latest applications of AI in signal processing from industry experts.',
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+      attendees: 300,
+      topics: ['Deep Learning', 'Neural Networks', 'Real-time Processing'],
+      registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLScAho4NgQ-H0zXE1E02aO4vcgEtHURxQMcsuR9YUIXn41H_nQ/viewform?usp=dialog', // Link for the second event
+    },
+  ];
 
   const previousActivities = [
     {
-      title: 'Signal Processing Symposium 2024',
-      date: 'November 2024',
-      location: 'BMSIT Academic block, Bengaluru ',
-      description: 'Join us for the annual symposium featuring keynote speakers, workshops, and networking opportunities.',
+      title: 'Capture The Signal 2024',
+      date: 'March 2024',
+      location: 'BMSIT Academic block, Bengaluru',
+      description: 'IEEE SPS flagship event of 2024 ,Join us for the annual symposium featuring keynote speakers, workshops, and networking opportunities.',
       image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      attendees: 200,
+      attendees: 400,
       topics: ['Innovation', 'Student Projects', 'Competition'],
+      detailsLink: 'https://bmsit-ieee.github.io/sps/cts/', // Details link for the first event
     },
     {
       title: 'Grid Wars',
-      date: 'September 2024',
-      location: 'BMSIT BSN block, Bengaluru ',
+      date: '31st December 2024',
+      location: 'BMSIT LAB block, Bengaluru',
       description: 'Reach the finish line to get the SPS glory',
       image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
       attendees: 250,
       topics: ['Research', 'Industry Trends', 'Networking'],
+      detailsLink: 'https://ieeesps.netlify.app/', // Details link for the second event
     },
   ];
 
   const EventCard = ({ event, index, isUpcoming = false }) => {
-  const isSelected = selectedEvent === event.title;
+    const isSelected = selectedEvent === event.title;
 
-  const handleRegisterClick = () => {
-    window.location.href = event.registrationLink; // Use the event's registration link
-  };
+    const handleRegisterClick = () => {
+      window.location.href = event.registrationLink; // Use the event's registration link
+    };
 
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-white dark:bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-lg dark:shadow-blue-500/5 overflow-hidden transform-gpu border border-transparent dark:border-blue-500/10 hover:dark:border-blue-500/20 transition-all"
-      onClick={() => setSelectedEvent(isSelected ? null : event.title)}
-    >
-      <motion.div 
-        className="relative h-48 sm:h-56 overflow-hidden cursor-pointer group"
-        whileHover={{ scale: 1.05 }}
-        transition={{ duration: 0.3 }}
+    return (
+      <motion.div
+        layout
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        className="bg-white dark:bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-lg dark:shadow-blue-500/5 overflow-hidden transform-gpu border border-transparent dark:border-blue-500/10 hover:dark:border-blue-500/20 transition-all"
+        onClick={() => setSelectedEvent(isSelected ? null : event.title)}
       >
-        <motion.img
-          src={event.image}
-          alt={event.title}
-          className="w-full h-full object-cover"
-          initial={{ scale: 1.2 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5 }}
-        />
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent dark:from-black/90"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        />
         <motion.div
-          className="absolute bottom-0 left-0 right-0 p-4 text-white"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          className="relative h-48 sm:h-56 overflow-hidden cursor-pointer group"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
         >
-          <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 ${
-            isUpcoming ? 'bg-blue-500 dark:bg-blue-600' : 'bg-gray-500 dark:bg-gray-600'
-          }`}>
-            {isUpcoming ? 'Upcoming' : 'Past Event'}
-          </div>
-          <h3 className="text-lg sm:text-xl font-bold text-white dark:text-white/90">{event.title}</h3>
+          <motion.img
+            src={event.image}
+            alt={event.title}
+            className="w-full h-full object-cover"
+            initial={{ scale: 1.2 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+          />
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent dark:from-black/90"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 p-4 text-white"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 ${
+              isUpcoming ? 'bg-blue-500 dark:bg-blue-600' : 'bg-gray-500 dark:bg-gray-600'
+            }`}>
+              {isUpcoming ? 'Upcoming' : 'Past Event'}
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold text-white dark:text-white/90">{event.title}</h3>
+          </motion.div>
         </motion.div>
-      </motion.div>
 
-      <AnimatePresence>
-        <motion.div 
-          className="p-4 sm:p-6"
-          initial={{ height: "auto" }}
-          animate={{ height: "auto" }}
-          exit={{ height: 0 }}
-        >
-          <div className="space-y-3">
-            <motion.div 
-              className="flex items-center text-gray-600 dark:text-gray-400 space-x-4"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="flex items-center space-x-2">
-                <Calendar className="w-4 h-4" />
-                <span className="text-sm">{event.date}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4" />
-                <span className="text-sm">{event.location}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Users className="w-4 h-4" />
-                <span className="text-sm">{event.attendees} attendees</span>
-              </div>
-            </motion.div>
+        <AnimatePresence>
+          <motion.div
+            className="p-4 sm:p-6"
+            initial={{ height: "auto" }}
+            animate={{ height: "auto" }}
+            exit={{ height: 0 }}
+          >
+            <div className="space-y-3">
+              <motion.div
+                className="flex items-center text-gray-600 dark:text-gray-400 space-x-4"
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="flex items-center space-x-2">
+                  <Calendar className="w-4 h-4" />
+                  <span className="text-sm">{event.date}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <MapPin className="w-4 h-4" />
+                  <span className="text-sm">{event.location}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Users className="w-4 h-4" />
+                  <span className="text-sm">{event.attendees} attendees</span>
+                </div>
+              </motion.div>
 
-            <motion.p 
-              className="text-gray-600 dark:text-gray-400 text-sm"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              {event.description}
-            </motion.p>
+              <motion.p
+                className="text-gray-600 dark:text-gray-400 text-sm"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                {event.description}
+              </motion.p>
 
-            <motion.div
-              className="flex flex-wrap gap-2 mt-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              {event.topics.map((topic, i) => (
-                <span
-                  key={i}
-                  className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs text-gray-600 dark:text-gray-400"
+              <motion.div
+                className="flex flex-wrap gap-2 mt-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                {event.topics.map((topic, i) => (
+                  <span
+                    key={i}
+                    className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs text-gray-600 dark:text-gray-400"
+                  >
+                    {topic}
+                  </span>
+                ))}
+              </motion.div>
+
+              {isUpcoming && (
+                <motion.button
+                  className="mt-4 w-full sm:w-auto flex items-center justify-center space-x-2 bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleRegisterClick}
                 >
-                  {topic}
-                </span>
-              ))}
-            </motion.div>
+                  <span>Register Now</span>
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              )}
 
-            {isUpcoming && (
-              <motion.button
-                className="mt-4 w-full sm:w-auto flex items-center justify-center space-x-2 bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleRegisterClick} // Use the event-specific link
-              >
-                <span>Register Now</span>
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-            )}
-
-            {!isUpcoming && (
-              <motion.a
-                href="#"
-                className="mt-4 inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm"
-                whileHover={{ x: 5 }}
-              >
-                <span>View Event Details</span>
-                <ExternalLink className="w-4 h-4 ml-1" />
-              </motion.a>
-            )}
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </motion.div>
-  );
-};
+              {!isUpcoming && (
+                <motion.a
+                  href={event.detailsLink} // Use the event's details link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm"
+                  whileHover={{ x: 5 }}
+                >
+                  <span>View Event Details</span>
+                  <ExternalLink className="w-4 h-4 ml-1" />
+                </motion.a>
+              )}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
+    );
+  };
 
   return (
     <div className="pt-16 dark:bg-black/40">
       {/* Hero Section with Animated Gradient */}
-      <motion.div 
+      <motion.div
         className="relative py-12 sm:py-20 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -208,14 +212,14 @@ const Events = () => {
             ease: "linear"
           }}
         />
-        
+
         <motion.div
           className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.h1 
+          <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 dark:text-white/90"
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
@@ -223,7 +227,7 @@ const Events = () => {
           >
             Events
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-lg sm:text-xl max-w-3xl mx-auto dark:text-white/80"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -265,9 +269,9 @@ const Events = () => {
             transition={{ duration: 0.6 }}
             className="mb-12 sm:mb-20"
           >
-            <motion.h2 
+            <motion.h2
               className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 lg:mb-12 text-center dark:text-white/90"
-              whileInView={{ 
+              whileInView={{
                 opacity: [0, 1],
                 y: [20, 0]
               }}
@@ -289,9 +293,9 @@ const Events = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <motion.h2 
+            <motion.h2
               className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 lg:mb-12 text-center dark:text-white/90"
-              whileInView={{ 
+              whileInView={{
                 opacity: [0, 1],
                 y: [20, 0]
               }}
