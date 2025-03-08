@@ -51,7 +51,7 @@ const Archives = () => {
   const hallOfFame = [
     {
       name: 'Aditya ',
-      role: 'President (2023-24)',
+      role: 'President (2024-25)',
       image: 'https://i.imgur.com/XYugBxz.jpeg',
     },
     {
