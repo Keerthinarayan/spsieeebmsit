@@ -162,9 +162,11 @@ const Team = () => {
               variants={memberVariants}
               onMouseEnter={() => setHoveredMember(index)}
               onMouseLeave={() => setHoveredMember(null)}
-              className="relative group"
+              className={`relative group ${
+                index === teamMembers.length - 1 ? 'col-start-1 col-end-3 sm:col-auto flex justify-center' : ''
+              }`}
             >
-              <div className="relative overflow-hidden rounded-lg aspect-square sm:aspect-[3/4]">
+              <div className="relative overflow-hidden rounded-lg aspect-square sm:aspect-[3/4] w-full max-w-[200px] sm:max-w-none">
                 <motion.img
                   src={member.image}
                   alt={member.name}
