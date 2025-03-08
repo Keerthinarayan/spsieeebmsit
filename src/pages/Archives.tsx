@@ -56,22 +56,27 @@ const Archives = () => {
     },
     {
       name: 'Shashank ',
-      role: 'Vice President (2023-24)',
+      role: 'Vice President (2024-25)',
       image: 'https://bmsit-ieee.github.io/sps/wp-content/uploads/2024/03/PanthangiViceCHair.jpg',
     },
     {
-      name: 'Vibhav',
-      role: 'Secretary (2023-24)',
+      name: 'Spandan',
+      role: 'Secretary (2024-25)',
+      image: 'https://i.imgur.com/J5u6aq3.jpeg ',
+    },
+     {
+      name: 'Vaibhav',
+      role: 'Volcom Lead (2024-25)',
       image: 'https://i.imgur.com/bp1Ck3S.jpeg ',
     },
     {
       name: 'Suhas',
-      role: 'Treasurer (2023-24)',
+      role: 'Treasurer (2024-25)',
       image: 'https://i.imgur.com/MRRwzH3.jpeg ',
     },
     {
       name: 'Rakshit',
-      role: 'Webmaster (2023-24)',
+      role: 'Webmaster (2024-25)',
       image: 'https://i.imgur.com/KeBIscO.jpeg ',
     },
   ];
@@ -225,14 +230,44 @@ const Archives = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6 lg:gap-8">
-              {hallOfFame.map((member, index) => (
+            {/* First Row - 4 Members */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
+              {hallOfFame.slice(0, 4).map((member, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                   className="relative group"
+                >
+                  <div className="relative w-full aspect-square mb-2 sm:mb-3 lg:mb-4">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-500/20 to-blue-500/20 dark:from-green-500/10 dark:to-blue-500/10 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover rounded-full border-2 sm:border-4 border-white dark:border-gray-800 shadow-lg dark:shadow-blue-500/10"
+                    />
+                    <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2">
+                      <Award className="w-3 h-3 sm:w-4 sm:h-4 lg:w-6 lg:h-6 text-yellow-400 dark:text-yellow-500 drop-shadow-lg" />
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-xs sm:text-sm lg:text-lg font-bold mb-0.5 sm:mb-1 dark:text-white/90">{member.name}</h3>
+                    <p className="text-blue-600 dark:text-blue-400 font-medium text-xs sm:text-sm lg:text-base">{member.role}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Second Row - 2 Members (Centered) */}
+            <div className="flex justify-center gap-3 sm:gap-6 lg:gap-8">
+              {hallOfFame.slice(4, 6).map((member, index) => (
+                <motion.div
+                  key={index + 4}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 + (index + 4) * 0.1 }}
+                  className="relative group w-[calc(50%-0.75rem)] sm:w-[calc(25%-1.5rem)] lg:w-[calc(20%-2rem)]"
                 >
                   <div className="relative w-full aspect-square mb-2 sm:mb-3 lg:mb-4">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-500/20 to-blue-500/20 dark:from-green-500/10 dark:to-blue-500/10 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
